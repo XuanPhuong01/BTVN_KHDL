@@ -9,7 +9,7 @@ https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/A.md
 https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/B.md
 
 **C. Cấu hình docker compose:**
-
+https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/C.md
 
 **D. (Bonus - không bắt buộc):**
 
