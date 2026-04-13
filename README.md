@@ -3,7 +3,7 @@
 # NGUYỄN THỊ XUÂN PHƯƠNG - K225480106054
 
 **A. Đăng ký tên miền xịn cho cá nhân:**
-
+https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/A.md
 
 **B. Cài đặt Ubuntu + Docker:**
 
