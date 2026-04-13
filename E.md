@@ -23,7 +23,8 @@ Nội dung xử lý (Function):
 JavaScript
 msg.payload = { message: "Chào bạn Phương, kết nối API qua Nginx thành công!" };
 return msg;
-[DÁN ẢNH]: Ảnh chụp giao diện Node-RED (127.0.0.1:1880) có các nút http_in, function, http_response đã kết nối với nhau.
+<img width="967" height="376" alt="image" src="https://github.com/user-attachments/assets/aa6b797d-c6f9-42c3-b9ba-30902c7ae433" />
+
 
 ## 3. Tích hợp Fetch API vào Frontend (Nginx)
 Thực hiện sửa file index.html tại thư mục /myweb để gọi dữ liệu từ Node-RED thông qua cơ chế Reverse Proxy đã cấu hình tại Nginx (location /api/).
