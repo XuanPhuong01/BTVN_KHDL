@@ -15,7 +15,7 @@ https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/C.md
 
 
 **E. Triển khai (level test) ứng dụng:**
-
+https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/E.md
 
 **F. Gỡ lỗi:**
 
