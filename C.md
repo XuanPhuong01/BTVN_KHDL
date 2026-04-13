@@ -6,19 +6,24 @@ Lệnh thực hiện:
 
 Bash
 mkdir ~/myapp && cd ~/myapp
+
 mkdir myweb nginx nodered
+
 Giải thích: Việc chia thư mục giúp dữ liệu không bị mất khi xóa container (Volume Mapping).
 
-[PASTE ẢNH: Chụp màn hình gõ lệnh mkdir và ls -la để thấy cấu trúc thư mục]
+<img width="627" height="186" alt="image" src="https://github.com/user-attachments/assets/45ec2124-0352-49f0-9209-09e798256e0e" />
+
 
 ## 2. Tạo nội dung trang Web cá nhân
 Thao tác: Tạo file index.html trong thư mục ./myweb.
 
 Lệnh thực hiện: nano ./myweb/index.html
 
-Giải thích: Đây là trang tĩnh sẽ được Nginx hiển thị khi truy cập vào tên miền của bạn.
+Giải thích: Đây là trang tĩnh sẽ được Nginx hiển thị khi truy cập vào tên miền.
 
-[PASTE ẢNH: Chụp nội dung file index.html có tên và thông tin của bạn trong trình soạn thảo nano]
+
+<img width="789" height="629" alt="image" src="https://github.com/user-attachments/assets/2cdd5978-4c93-40fd-be33-b4f3d2fdb85c" />
+
 
 ## 3. Cấu hình Docker Compose
 Thao tác: Tạo file docker-compose.yml để định nghĩa các dịch vụ:
@@ -31,6 +36,7 @@ Giải thích: File này giúp quản lý toàn bộ hệ thống bằng một l
 
 [PASTE ẢNH: Chụp nội dung file docker-compose.yml bạn đã soạn thảo]
 
+
 ## 4. Cấu hình Nginx Reverse Proxy
 Thao tác: Chỉnh sửa file ./nginx/nginx.conf.
 
@@ -38,7 +44,7 @@ Cấu hình chính:
 
 listen 80: Lắng nghe cổng 80.
 
-server_name: Đặt sub-domain tùy ý (VD: phuong.local).
+server_name: Đặt sub-domain tùy ý .
 
 location /: Trỏ về thư mục /myweb (chứa file index.html).
 
@@ -46,7 +52,9 @@ location /api: Sử dụng proxy_pass để đẩy yêu cầu sang Node-RED.
 
 Giải thích: Nginx đóng vai trò là "cổng bảo vệ", tiếp nhận mọi yêu cầu và điều hướng chúng đến đúng nơi.
 
-[PASTE ẢNH: Chụp nội dung file nginx.conf]
+
+<img width="781" height="639" alt="image" src="https://github.com/user-attachments/assets/29b2d1f3-101c-4a19-9c82-0d52cffa8cfb" />
+
 
 ## 5. Khởi chạy hệ thống lần đầu
 Thao tác: Chạy lệnh để Docker tải ảnh (image) và tạo các file hệ thống ban đầu.
