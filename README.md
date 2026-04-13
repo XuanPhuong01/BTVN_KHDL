@@ -6,7 +6,7 @@
 https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/A.md
 
 **B. Cài đặt Ubuntu + Docker:**
-
+https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/B.md
 
 **C. Cấu hình docker compose:**
 
