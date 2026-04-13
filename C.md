@@ -85,8 +85,7 @@ Truy cập cổng 80: Hiện thông tin cá nhân.
 
 Truy cập cổng 1880: Hiện màn hình đăng nhập Node-RED.
 
-
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/e0288885-6072-47ed-807c-987d847cdd68" />
+<img width="934" height="919" alt="image" src="https://github.com/user-attachments/assets/80eab34e-c407-4cbd-bb8e-e4e2e14f804c" />
 
 
 <img width="1914" height="1079" alt="image" src="https://github.com/user-attachments/assets/32fb64f8-7286-411a-bd9d-f81b4b326896" />
