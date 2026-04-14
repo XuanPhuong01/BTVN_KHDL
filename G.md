@@ -1,48 +1,68 @@
 # G. TRIỂN KHAI ỨNG DỤNG ĐẾN END-USER
-Mục này mô tả quá trình đưa ứng dụng từ môi trường local lên môi trường Internet công cộng thông qua giải pháp Cloudflare Tunnel, giúp End-user có thể truy cập mà không cần mở port trên Router (Port Forwarding).
+Phần này trình bày quá trình đưa ứng dụng từ máy chủ nội bộ Ubuntu ra Internet công cộng thông qua giải pháp Cloudflare Tunnel, giúp người dùng truy cập an toàn mà không cần mở cổng trên thiết bị mạng.
 
-## 1. Quy trình triển khai hệ thống
-Quá trình triển khai được thực hiện qua các bước chuẩn hóa từ câu lệnh Docker đơn lẻ sang hệ thống quản lý tập trung:
+## 1. Tạo tunnel (đường hầm) trên Cloudflare
+Truy cập Dashboard Cloudflare Zero Trust, chọn Networks -> Tunnels để tạo đường hầm mới mang tên xuanphuong-tuunel.
 
-Khởi tạo Tunnel: Tạo đường hầm bảo mật trên Dashboard của Cloudflare, chọn phương thức triển khai dành cho Docker.
+Chọn loại triển khai là Docker để nhận mã Token định danh cho kết nối bảo mật giữa máy chủ và Cloudflare.
 
-Chuyển đổi cấu hình: Thực hiện Convert các lệnh docker run thủ công sang định dạng chuẩn trong file docker-compose.yml để dễ dàng quản lý và mở rộng.
+<img width="1835" height="1019" alt="Screenshot 2026-04-14 095628" src="https://github.com/user-attachments/assets/d89c28f1-4f4d-40d0-ac28-f39059882714" />
 
-Cấu hình hệ thống: Khai báo cấu hình Tunnel và các dịch vụ liên quan vào tệp thực thi chính.
+## 2. Convert lệnh docker run sang dạng Docker Compose
+Từ lệnh gốc của Cloudflare: docker run cloudflare/cloudflared:latest tunnel --no-autoupdate run --token <TOKEN>.
 
-Vận hành: Chạy lệnh docker compose up -d để khởi động toàn bộ hạ tầng ngầm.
+Tiến hành chuyển đổi các tham số này sang định dạng YAML để đưa vào tệp điều phối dịch vụ chung, giúp quản lý đồng bộ với Nginx và Node-RED.
 
-Public ứng dụng: Cấu hình Public Hostname trỏ tới container Nginx qua cổng 80 nội bộ. Dữ liệu sẽ đi qua Tunnel an toàn dưới dạng Sub-domain.
+## 3. Khai báo vào file docker-compose.yml
+Cấu trúc dịch vụ tunnel được thêm vào tệp cấu hình chính. Việc này giúp tự động hóa quá trình kết nối mỗi khi hệ thống khởi động.
 
-## 2. Sơ đồ kiến trúc triển khai
-2.1. Góc nhìn của Nhà phát triển (Developer View)
-Sơ đồ này thể hiện luồng tư duy từ việc sử dụng các lệnh Ubuntu cơ bản, khai báo qua Docker Compose để quản lý đồng bộ các dịch vụ Nginx (Web/API) và Node-RED trước khi tới tay người dùng.
+<img width="956" height="1021" alt="Screenshot 2026-04-14 100417" src="https://github.com/user-attachments/assets/5e6c0307-22cd-43ad-a3dd-f5e4a9d1dcde" />
 
-[Bỏ ảnh: image_3831eb.png - Sơ đồ luồng triển khai từ Ubuntu đến End-user]
 
-2.2. Góc nhìn của Hệ thống (System Architecture View)
-Sơ đồ này mô tả luồng dữ liệu thực tế: End-user truy cập qua Internet -> Đi qua đường hầm Cloudflare Tunnel -> Nginx đóng vai trò điều phối (Proxy) -> Trỏ tới các dịch vụ API hoặc Giao diện tương ứng.
+## 4. Chạy lại Docker Compose
+Sử dụng lệnh docker compose up -d --force-recreate để hệ thống khởi tạo lại toàn bộ các dịch vụ bao gồm cả đường hầm Cloudflare.
 
-[Bỏ ảnh: image_38329e.png - Sơ đồ luồng dữ liệu qua Cloudflare Tunnel]
+Kiểm tra trạng thái các Container để đảm bảo tất cả đều vận hành ổn định.
 
-## 3. Cấu trúc thư mục dự án
-Để hệ thống vận hành ổn định, cấu trúc thư mục được tổ chức như sau:
+<img width="957" height="536" alt="Screenshot 2026-04-14 100739" src="https://github.com/user-attachments/assets/900df43f-ed44-4c6a-83d1-afde60fcb334" />
 
+
+## 5. Public ứng dụng bằng cách thêm Router
+Tại mục Public Hostname trên Cloudflare, thiết lập một quy tắc định tuyến để dẫn luồng dữ liệu từ Internet vào máy chủ.
+
+Cấu hình tên miền app.xuanphuong.id.vn trỏ về dịch vụ nội bộ http://mynginx:80.
+
+<img width="1797" height="152" alt="image" src="https://github.com/user-attachments/assets/ff302664-91a9-422a-b283-a76c6a918f29" />
+
+
+<img width="1919" height="1064" alt="Screenshot 2026-04-14 101035" src="https://github.com/user-attachments/assets/6da14293-6d7a-4274-a082-2e4d200bc9b7" />
+
+<img width="1536" height="703" alt="Screenshot 2026-04-14 102258" src="https://github.com/user-attachments/assets/58012c5b-31e2-434a-89b6-2b8d5333d65d" />
+
+
+<img width="1068" height="887" alt="Screenshot 2026-04-14 102422" src="https://github.com/user-attachments/assets/dc9c221c-c62e-4bd4-96dd-0374dabb856a" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2dba5f8e-e660-4b42-aa94-511463c07f8a" />
+
+
+## 6. Kiểm tra url sub-domain cho mọi End-user
+Sử dụng trình duyệt trên thiết bị di động (sử dụng mạng 4G/ngoài mạng nội bộ) để kiểm tra tính sẵn sàng của ứng dụng.
+
+Kết quả: Ứng dụng hiển thị đầy đủ giao diện và các tính năng API đã thiết lập.
+
+<img width="828" height="1792" alt="image" src="https://github.com/user-attachments/assets/133ebf4b-4ffe-4278-aed4-05c659b44c31" />
+
+
+Cấu trúc thư mục dự án:
 Plaintext
 myapp/
-├── docker-compose.yml      # Tệp cấu hình chính điều phối toàn bộ container
+├── docker-compose.yml      # Tệp cấu hình điều phối các Container
+
 ├── nginx/
-│   └── nginx.conf          # Cấu hình Reverse Proxy và Routing cho Web/API
+│   └── nginx.conf          # Cấu hình Reverse Proxy cho Web/API
+
 ├── myweb/
-│   └── index.html          # Giao diện Frontend hiển thị thông tin sinh viên
-└── nodered/                # Thư mục lưu trữ dữ liệu của Node-RED
-    ├── flows.json          # Lưu trữ các luồng xử lý API Backend
-    └── settings.js         # Cấu hình bảo mật (Admin Auth) yêu cầu đăng nhập
-## 4. Kết quả đạt được
-Bảo mật: Ứng dụng không cần phơi bày IP thật của máy chủ ra Internet.
+│   └── index.html          # Giao diện thông tin sinh viên
 
-Tính sẵn sàng: End-user có thể truy cập ổn định thông qua Sub-domain (Ví dụ: app.yourdomain.com).
-
-Quản trị: Dễ dàng kiểm soát quyền truy cập và giám sát lưu lượng thông qua Cloudflare Dashboard.
-
-[Bỏ ảnh: Ảnh chụp màn hình trình duyệt truy cập thành công qua URL sub-domain của Cloudflare]
+└── nodered/                # Thư mục lưu trữ dữ liệu Backend
+    └── settings.js         # Cấu hình bảo mật (Admin Auth)
