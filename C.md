@@ -21,8 +21,7 @@ Lệnh thực hiện: nano ./myweb/index.html
 
 Giải thích: Đây là trang tĩnh sẽ được Nginx hiển thị khi truy cập vào tên miền.
 
-
-<img width="789" height="629" alt="image" src="https://github.com/user-attachments/assets/2cdd5978-4c93-40fd-be33-b4f3d2fdb85c" />
+<img width="1059" height="661" alt="image" src="https://github.com/user-attachments/assets/f0a05c8d-1056-4eb6-9257-8c81b34a2570" />
 
 
 ## 3. Cấu hình Docker Compose
@@ -48,7 +47,7 @@ server_name: Đặt sub-domain tùy ý .
 
 location /: Trỏ về thư mục /myweb (chứa file index.html).
 
-location /api: Sử dụng proxy_pass để đẩy yêu cầu sang Node-RED.
+location /api: Sử dụng proxy_pass http://mynodered:1880; để đẩy yêu cầu sang Node-RED.
 
 Giải thích: Nginx đóng vai trò là "cổng bảo vệ", tiếp nhận mọi yêu cầu và điều hướng chúng đến đúng nơi.
 
@@ -81,11 +80,11 @@ Thao tác: Truy cập vào trình duyệt theo địa chỉ IP máy ảo hoặc 
 
 Kết quả mong đợi:
 
-Truy cập cổng 80: Hiện thông tin cá nhân.
+Truy cập cổng 8080: Hiện thông tin cá nhân.
 
 Truy cập cổng 1880: Hiện màn hình đăng nhập Node-RED.
 
-<img width="934" height="919" alt="image" src="https://github.com/user-attachments/assets/80eab34e-c407-4cbd-bb8e-e4e2e14f804c" />
+<img width="831" height="862" alt="image" src="https://github.com/user-attachments/assets/ee3002e1-2410-4ab9-8ab7-63e23977b710" />
 
 
 <img width="1914" height="1079" alt="image" src="https://github.com/user-attachments/assets/32fb64f8-7286-411a-bd9d-f81b4b326896" />
