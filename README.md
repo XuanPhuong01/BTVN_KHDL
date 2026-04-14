@@ -18,7 +18,7 @@ https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/C.md
 https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/E.md
 
 **F. Gỡ lỗi:**
-
+https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/F.md
 
 **G. Triển khai ứng dụng đến End-user:**
 
