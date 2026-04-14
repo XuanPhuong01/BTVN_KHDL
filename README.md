@@ -22,6 +22,7 @@ https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/F.md
 
 **G. Triển khai ứng dụng đến End-user:**
 
+https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/G.md
 
 **G. Câu hỏi về bài làm?**
 
