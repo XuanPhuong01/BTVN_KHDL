@@ -17,12 +17,12 @@ https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/C.md
 **E. Triển khai (level test) ứng dụng:**
 https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/E.md
 
-**F. Gỡ lỗi:**
+**F. Gỡ lỗi:** 
 https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/F.md
 
 **G. Triển khai ứng dụng đến End-user:**
-
 https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/G.md
 
 **G. Câu hỏi về bài làm?**
+https://github.com/XuanPhuong01/BTVN_KHDL/blob/main/TraLoiCauHoi.md
 
